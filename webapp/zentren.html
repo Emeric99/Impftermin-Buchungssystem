@@ -4,6 +4,130 @@
     <meta charset="UTF-8">
     <title>Termin Buchen - Zentrum</title>
     <link rel="stylesheet" type="text/css" href="script.css">
+</head>
+<body>
+<div class="content">
+    <h1 id="center-title">Willkommen</h1>
+    <p>Buchen Sie einen Termin zur Impfung im <span id="center-name">Zentrum</span></p>
+    <div id="center-info"></div>
+
+    <form action="buchung" method="post">
+        <input type="hidden" name="center" id="center">
+
+        <label for="date">Datum des Termins:</label>
+        <input type="date" id="date" name="date1">
+        <br><br>
+        <label for="heure1">Uhrzeit des Termins:</label>
+        <select name="heure1" id="heure1">
+            <option value="">Uhrzeit auswählen</option>
+            <option value="08:00">08:00</option>
+            <option value="08:30">08:30</option>
+            <option value="09:00">09:00</option>
+            <option value="09:30">09:30</option>
+            <option value="10:00">10:00</option>
+            <option value="10:30">10:30</option>
+            <option value="11:00">11:00</option>
+            <option value="11:30">11:30</option>
+            <option value="12:00">12:00</option>
+            <option value="12:30">12:30</option>
+            <option value="13:00">13:00</option>
+            <option value="13:30">13:30</option>
+            <option value="14:00">14:00</option>
+            <option value="14:30">14:30</option>
+            <option value="15:00">15:00</option>
+            <option value="15:30">15:30</option>
+            <option value="16:00">16:00</option>
+            <option value="16:30">16:30</option>
+            <option value="17:00">17:00</option>
+            <option value="17:30">17:30</option>
+        </select>
+        <br><br>
+        <label for="vaccine">Gewünschte Impfstoffmarke:</label>
+        <select id="vaccine" name="vaccine">
+        </select>
+        <br><br>
+        <label for="familien_mitglied">Familienmitglied (optional):</label>
+        <input type="text" id="familien_mitglied" name="familien_mitglied" placeholder="Name des Familienmitglieds">
+        <br><br>
+        <label for="relation">Beziehung (optional):</label>
+        <input type="text" id="relation" name="relation" placeholder="z.B. Sohn, Tochter">
+        <br><br>
+        <input type="submit" value="Termin Buchen">
+    </form>
+    <button onclick="location.href='willkommen.html'">Startseite</button>
+</div>
+
+<script>
+    function getQueryParameter(name) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(name);
+    }
+
+    const centerData = {
+        "Impfzentrum Bremerhaven": {
+            cabins: 5,
+            vaccines: [
+                { value: "1", text: "BioNTech/Pfizer" },
+                { value: "2", text: "Moderna" },
+                { value: "3", text: "Johnson & Johnson" },
+                { value: "4", text: "AstraZeneca" }
+            ]
+        },
+        "Impfzentrum Bremen Mitte": {
+            cabins: 8,
+            vaccines: [
+                { value: "1", text: "BioNTech/Pfizer" },
+                { value: "2", text: "Moderna" },
+                { value: "3", text: "Johnson & Johnson" },
+                { value: "4", text: "AstraZeneca" }
+            ]
+        },
+        "Impfzentrum Bremen Nord": {
+            cabins: 4,
+            vaccines: [
+                { value: "1", text: "BioNTech/Pfizer" },
+                { value: "2", text: "Moderna" },
+                { value: "3", text: "Johnson & Johnson" },
+                { value: "4", text: "AstraZeneca" }
+            ]
+        }
+    };
+
+    const center = getQueryParameter('center');
+    const centerTitle = document.getElementById('center-title');
+    const centerNameSpan = document.getElementById('center-name');
+    const centerInfo = document.getElementById('center-info');
+    const vaccineSelect = document.getElementById('vaccine');
+    const hiddenCenterInput = document.getElementById('center');
+
+    if (center && centerData[center]) {
+        hiddenCenterInput.value = center;
+        const data = centerData[center];
+        centerTitle.innerText = "Willkommen im " + center;
+        centerNameSpan.innerText = center;
+        centerInfo.innerHTML = "<p>Dieses Zentrum verfügt über " + data.cabins + " Kabine(n).<br>" +
+            "Es stehen " + data.vaccines.length + " Impfstoffoption(en) zur Auswahl.</p>";
+
+        vaccineSelect.innerHTML = '<option value="">Impfstoff wählen</option>';
+        data.vaccines.forEach(vaccine => {
+            const option = document.createElement("option");
+            option.value = vaccine.value;
+            option.text = vaccine.text;
+            vaccineSelect.appendChild(option);
+        });
+    } else {
+        centerTitle.innerText = "Zentrum nicht gefunden";
+        centerInfo.innerHTML = "<p>Bitte wählen Sie über die Startseite ein gültiges Zentrum aus.</p>";
+        vaccineSelect.disabled = true;
+    }
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Termin Buchen - Zentrum</title>
+    <link rel="stylesheet" type="text/css" href="script.css">
     
 </head>
 <body>
