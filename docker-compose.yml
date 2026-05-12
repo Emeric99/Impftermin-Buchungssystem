@@ -32,6 +32,14 @@ services:
       timeout: 5s
       retries: 5
 
+  mailhog:
+    image: mailhog/mailhog
+    container_name: impftermin-mail
+    restart: unless-stopped
+    ports:
+      - "1025:1025"   # SMTP
+      - "8025:8025"   # Web-UI
+
   build:
     image: maven:3.9-eclipse-temurin-17
     container_name: impftermin-build
@@ -59,6 +67,9 @@ services:
       - ./docker/context.xml:/usr/local/tomcat/conf/context.xml
     environment:
       - CATALINA_OPTS=-Xms256m -Xmx512m
+      - SMTP_HOST=mailhog
+      - SMTP_PORT=1025
+      - SMTP_FROM=impftermin@bremerhaven.de
 
 volumes:
   db_data:
