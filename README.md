@@ -80,8 +80,6 @@ Impftermin-Buchungssystem/
 
 ### Voraussetzungen
 
-### Voraussetzungen
-
 - Docker & Docker Compose
   
 ### Mit Docker starten
