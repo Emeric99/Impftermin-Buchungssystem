@@ -96,11 +96,11 @@ docker compose --profile build run build
 docker compose up
 ```
 
-Anschließend im Browser öffnen:  
- **http://localhost:8080/impftermin/login.html**
+Anschließend im Browser öffnen:      
+**http://localhost:8080/impftermin/login.html**
  
-E-Mail-Vorschau (Mailhog):
- **http://localhost:8025**
+E-Mail-Vorschau (Mailhog):           
+**http://localhost:8025**
 
 
 
