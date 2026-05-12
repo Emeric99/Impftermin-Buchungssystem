@@ -11,33 +11,32 @@ public class DatabaseConnection {
     private static HikariDataSource dataSource;
 
     static {
-        // Création d'un objet HikariConfig pour configurer le pool
+        String host     = System.getenv().getOrDefault("DB_HOST",     "mariadb");
+        String port     = System.getenv().getOrDefault("DB_PORT",     "3306");
+        String dbName   = System.getenv().getOrDefault("DB_NAME",     "impftermin");
+        String user     = System.getenv().getOrDefault("DB_USER",     "impfuser");
+        String password = System.getenv().getOrDefault("DB_PASSWORD", "impfpassword");
+
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mariadb://mysql-server:3306/swe3-2024-08_db");
-        config.setUsername("swe3-2024-08");
-        config.setPassword("QbUk49wrEdmXBZ6BQBWC");
+        config.setJdbcUrl("jdbc:mariadb://" + host + ":" + port + "/" + dbName);
+        config.setUsername(user);
+        config.setPassword(password);
 
-        // Configuration des paramètres du pool de connexions
-        config.setMaximumPoolSize(100);
-        config.setMinimumIdle(10);
-        config.setConnectionTimeout(10_000); // 10 sec
-        config.setIdleTimeout(600_000);        // 10 Min
-        config.setMaxLifetime(1_800_000);      // 30 Min
+        config.setMaximumPoolSize(20);
+        config.setMinimumIdle(5);
+        config.setConnectionTimeout(10_000);
+        config.setIdleTimeout(600_000);
+        config.setMaxLifetime(1_800_000);
+        config.setValidationTimeout(5000);
+        config.setLeakDetectionThreshold(2000);
 
-        // Optional: verifier si les connections sont valides avant de les zurückgeben
-        config.setValidationTimeout(5000);     // 5 Sec
-        config.setLeakDetectionThreshold(2000); // 2 Sec detection des Leaks
-
-        //Création de l'objet HikariDataSource avec la configuration définie
         dataSource = new HikariDataSource(config);
     }
 
-    
     public static Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
 
-    
     public static void releaseConnection(Connection connection) {
         if (connection != null) {
             try {
