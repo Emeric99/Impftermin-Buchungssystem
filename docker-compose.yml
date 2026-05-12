@@ -1,0 +1,39 @@
+services:
+
+  mariadb:
+    image: mariadb:11
+    container_name: impftermin-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: impftermin
+      MYSQL_USER: impfuser
+      MYSQL_PASSWORD: impfpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  tomcat:
+    image: tomcat:10-jdk17
+    container_name: impftermin-app
+    restart: unless-stopped
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./webapp.war:/usr/local/tomcat/webapps/impftermin.war
+      - ./docker/context.xml:/usr/local/tomcat/conf/context.xml
+    environment:
+      - CATALINA_OPTS=-Xms256m -Xmx512m
+
+volumes:
+  db_data:
