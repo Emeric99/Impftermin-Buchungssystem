@@ -2,31 +2,35 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <style>
-        .container { max-width: 400px; margin: 50px auto; font-family: Arial, sans-serif; }
-        .gruppe { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; }
-        input { width: 100%; padding: 8px; box-sizing: border-box; }
-        button { padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – Impftermin-Buchungssystem</title>
+    <link rel="stylesheet" href="script.css">
 </head>
 <body>
-<div class="container">
-    <h2>Login</h2>
-    <form action="login" method="post">
-        <div class="gruppe">
-            <label for="benutzername">Benutzername</label>
-            <input type="text" id="benutzername" name="benutzername" required>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <div class="logo-icon">💉</div>
+            <h1>Impftermin-Buchungssystem</h1>
+            <p>Stadt Bremerhaven</p>
         </div>
-        <div class="gruppe">
-            <label for="passwort">Passwort</label>
-            <input type="password" id="passwort" name="passwort" required>
+
+        <form action="login" method="post">
+            <div class="field">
+                <label for="benutzername">Benutzername</label>
+                <input type="text" id="benutzername" name="benutzername" placeholder="Ihr Benutzername" required>
+            </div>
+            <div class="field">
+                <label for="passwort">Passwort</label>
+                <input type="password" id="passwort" name="passwort" placeholder="Ihr Passwort" required>
+            </div>
+            <button type="submit" class="btn-primary">Anmelden</button>
+        </form>
+
+        <div class="auth-link">
+            Noch kein Konto? <a href="register.html">Jetzt registrieren</a>
         </div>
-        <button type="submit">Anmelden</button>
-    </form>
-    <p>Noch kein Konto? <a href="register.html">Jetzt registrieren</a></p>
+    </div>
 </div>
 </body>
 </html>
