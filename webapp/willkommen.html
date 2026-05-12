@@ -2,26 +2,56 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Willkommen</title>
-    <link rel="stylesheet" type="text/css" href="script.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impftermin-Buchungssystem</title>
+    <link rel="stylesheet" href="script.css">
 </head>
 <body>
-<div class="header">
-    <div class="header-left">
-        <button onclick="location.href='logout'">Abmelden</button>
+
+<nav class="navbar">
+    <a class="navbar-brand" href="willkommen.html">
+        <span>💉</span> Impfzentrum Bremerhaven
+    </a>
+    <div class="navbar-links">
+        <a href="willkommen.html" class="nav-btn active">Termin buchen</a>
+        <a href="termine.html" class="nav-btn">Meine Termine</a>
+        <a href="logout" class="nav-btn logout">Abmelden</a>
     </div>
-    <div class="header-right">
-        <button onclick="location.href='termine.html'">Termine</button>
-    </div>
+</nav>
+
+<div class="layout">
+    <aside class="sidebar">
+        <a href="willkommen.html" class="sidebar-item active">
+            <span class="icon">📅</span> Termin buchen
+        </a>
+        <a href="termine.html" class="sidebar-item">
+            <span class="icon">📋</span> Meine Termine
+        </a>
+    </aside>
+
+    <main class="main">
+        <h1 class="page-title">Impfzentrum auswählen</h1>
+        <p class="page-subtitle">Wählen Sie ein Impfzentrum in Ihrer Nähe.</p>
+
+        <div class="zentren-grid">
+            <a href="zentren.html?center=Impfzentrum%20Bremerhaven" class="zentrum-card">
+                <h3>Impfzentrum Bremerhaven</h3>
+                <p>Hafenstraße 1, 27568 Bremerhaven</p>
+                <div class="cabins">🏥 5 Kabinen</div>
+            </a>
+            <a href="zentren.html?center=Impfzentrum%20Bremen%20Mitte" class="zentrum-card">
+                <h3>Impfzentrum Bremen Mitte</h3>
+                <p>Domshof 10, 28195 Bremen</p>
+                <div class="cabins">🏥 8 Kabinen</div>
+            </a>
+            <a href="zentren.html?center=Impfzentrum%20Bremen%20Nord" class="zentrum-card">
+                <h3>Impfzentrum Bremen Nord</h3>
+                <p>Vegesacker Heerstraße 12, 28757 Bremen</p>
+                <div class="cabins">🏥 4 Kabinen</div>
+            </a>
+        </div>
+    </main>
 </div>
-<div class="content">
-    <h1>Willkommen auf der Impfseite der Stadt Bremerhaven</h1>
-    <h2>Bitte wählen Sie ein Zentrum</h2>
-    <ul>
-        <li><a href="zentren.html?center=Impfzentrum%20Bremerhaven">Impfzentrum Bremerhaven</a></li>
-        <li><a href="zentren.html?center=Impfzentrum%20Bremen%20Mitte">Impfzentrum Bremen Mitte</a></li>
-        <li><a href="zentren.html?center=Impfzentrum%20Bremen%20Nord">Impfzentrum Bremen Nord</a></li>
-    </ul>
-</div>
+
 </body>
 </html>
