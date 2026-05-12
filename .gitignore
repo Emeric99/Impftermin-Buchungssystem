@@ -1,0 +1,22 @@
+# Compiled files
+*.class
+*.war
+*.jar
+
+# Docker runtime context (contains real credentials)
+docker/context.xml
+
+# IDE
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
