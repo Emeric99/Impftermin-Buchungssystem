@@ -87,23 +87,21 @@ Impftermin-Buchungssystem/
 ### Mit Docker starten
 
 ```bash
-# Repository klonen
+# 1. Repository klonen
 git clone https://github.com/Emeric99/Impftermin-Buchungssystem.git
 cd Impftermin-Buchungssystem
 
-# Container starten
-docker-compose up
+# 2. Projekt kompilieren
+docker compose --profile build run build
+
+# 3. Anwendung starten
+docker compose up
 ```
 
-### Manuell
+Anschließend im Browser öffnen:  
+ **http://localhost:8080/impftermin/login.html**
 
-```bash
-# 1. MariaDB und Redis starten
-# 2. context.xml mit Datenbankdaten anpassen (misc/hikari-context.xml)
-# 3. .war-Datei in Tomcat deployen
-```
 
-> ℹ️ Die Datei `webapp/META-INF/context.xml` enthält Platzhalter für die Datenbankzugangsdaten (`DBUSER`, `DBPASSWORD`, `DBSERVER`, `DBNAME`). Diese müssen vor dem Start durch echte Werte ersetzt werden.
 
 ---
 
