@@ -20,6 +20,18 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7-alpine
+    container_name: impftermin-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   build:
     image: maven:3.9-eclipse-temurin-17
     container_name: impftermin-build
@@ -37,6 +49,8 @@ services:
     restart: unless-stopped
     depends_on:
       mariadb:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     ports:
       - "8080:8080"
