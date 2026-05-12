@@ -12,7 +12,6 @@ Eine webbasierte Anwendung zur Verwaltung und Buchung von Impfterminen, entwicke
 - **Familienbuchung** – Termine für Familienmitglieder mitbuchen
 - **E-Mail-Bestätigung** – Automatischer Versand einer Bestätigungsmail nach erfolgreicher Buchung
 - **Terminübersicht** – Eigene gebuchte Termine einsehen und verwalten
-- **Admin-Panel** – Verwaltung von Impfzentren, Zeitslots und Nutzern
 - **Sitzungsverwaltung** – Sichere Sessions mit automatischem Logout
 
 ---
@@ -81,12 +80,10 @@ Impftermin-Buchungssystem/
 
 ### Voraussetzungen
 
-- Java 17+
-- Apache Tomcat 10+
-- MariaDB
-- Redis
-- Docker (empfohlen)
+### Voraussetzungen
 
+- Docker & Docker Compose
+  
 ### Mit Docker starten
 
 ```bash
@@ -103,6 +100,7 @@ docker compose up
 
 Anschließend im Browser öffnen:  
  **http://localhost:8080/impftermin/login.html**
+E-Mail-Vorschau (Mailhog): **http://localhost:8025**
 
 
 
