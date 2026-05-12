@@ -119,4 +119,4 @@ docker-compose up
 
 ---
 
-*Modul: Softwareentwicklung 3 · Hochschule Bremerhaven · 2024*
+*Modul: Softwareentwicklung 3 · Hochschule Bremerhaven · 2025*
