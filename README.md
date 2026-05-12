@@ -38,13 +38,15 @@ Eine webbasierte Anwendung zur Verwaltung und Buchung von Impfterminen, entwicke
 Impftermin-Buchungssystem/
 ├── src/hbv/web/
 │   ├── RegisterServlet.java      # Registrierung mit PBKDF2-Hashing
-│   ├── LoginServlet.java         # Login mit Session-Management
+│   ├── LoginServlet.java         # Login mit Redis Session-Management
 │   ├── LogoutServlet.java        # Session-Invalidierung
 │   ├── BuchungServlet.java       # Terminbuchung & Verfügbarkeitsprüfung
 │   ├── TerminA.java              # Terminanzeige
 │   ├── DeleteT.java              # Terminlöschung
 │   ├── DatabaseConnection.java   # MariaDB-Verbindung via HikariCP
-│   └── SendMail.java             # E-Mail-Bestätigung
+│   ├── SendMail.java             # E-Mail-Bestätigung via Jakarta Mail
+│   ├── JedisAdapter.java         # Redis Session-Management
+│   └── MyContextListener.java    # Redis-Initialisierung beim Start
 ├── webapp/
 │   ├── WEB-INF/web.xml           # Servlet-Konfiguration
 │   ├── META-INF/context.xml      # Datenbankverbindung (Tomcat)
@@ -56,12 +58,13 @@ Impftermin-Buchungssystem/
 │   ├── admin.html
 │   ├── script.css
 │   └── script.js
-└── misc/
-    ├── hikari-context.xml        # HikariCP Connection Pool Konfiguration
-    ├── tomcat-factory-context.xml
-    └── tomcat-standard-context.xml
+├── sql/
+│   └── init.sql                  # Datenbankschema + Beispieldaten
+├── docker/
+│   └── context.xml               # DB-Konfiguration für Docker
+├── docker-compose.yml            # Startet MariaDB, Redis, Mailhog & Tomcat
+└── pom.xml                       # Maven Build-Konfiguration
 ```
-
 ---
 
 ## Sicherheitskonzept
