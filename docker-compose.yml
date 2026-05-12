@@ -20,6 +20,17 @@ services:
       timeout: 5s
       retries: 5
 
+  build:
+    image: maven:3.9-eclipse-temurin-17
+    container_name: impftermin-build
+    volumes:
+      - .:/app
+      - maven_cache:/root/.m2
+    working_dir: /app
+    command: mvn clean package -q
+    profiles:
+      - build
+
   tomcat:
     image: tomcat:10-jdk17
     container_name: impftermin-app
@@ -30,10 +41,11 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./webapp.war:/usr/local/tomcat/webapps/impftermin.war
+      - ./target/impftermin.war:/usr/local/tomcat/webapps/impftermin.war
       - ./docker/context.xml:/usr/local/tomcat/conf/context.xml
     environment:
       - CATALINA_OPTS=-Xms256m -Xmx512m
 
 volumes:
   db_data:
+  maven_cache:
