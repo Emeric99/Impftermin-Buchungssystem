@@ -101,7 +101,8 @@ docker compose up
 Anschließend im Browser öffnen:  
  **http://localhost:8080/impftermin/login.html**
  
-E-Mail-Vorschau (Mailhog): **http://localhost:8025**
+E-Mail-Vorschau (Mailhog):
+ **http://localhost:8025**
 
 
 
