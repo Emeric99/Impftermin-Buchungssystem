@@ -1,5 +1,7 @@
 # Impftermin-Buchungssystem
 
+![CI](https://github.com/Emeric99/Impftermin-Buchungssystem/actions/workflows/ci.yml/badge.svg)
+
 Eine webbasierte Anwendung zur Verwaltung und Buchung von Impfterminen, entwickelt im Rahmen des Moduls **Softwareentwicklung 3** an der Hochschule Bremerhaven.
 
 ---
