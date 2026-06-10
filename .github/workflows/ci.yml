@@ -22,7 +22,7 @@ jobs:
           cache: maven
 
       - name: Build WAR with Maven
-        run: mvn clean package -DskipTests
+        run: mvn clean package 
 
       - name: Upload WAR artifact
         uses: actions/upload-artifact@v4
